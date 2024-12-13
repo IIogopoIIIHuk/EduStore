@@ -11,8 +11,6 @@ import java.util.Collection;
 
 @Entity
 @Data
-@Builder
-@RequiredArgsConstructor
 @Table(name = "users")
 public class User {
 
@@ -40,5 +38,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Collection<Role> roles;
+
 
 }

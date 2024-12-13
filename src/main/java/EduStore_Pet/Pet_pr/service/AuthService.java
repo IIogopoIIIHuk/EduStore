@@ -20,11 +20,9 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
-
     private final UserService userService;
     private final JwtTokenUtils jwtTokenUtils;
     private final AuthenticationManager authenticationManager;
-
 
     public ResponseEntity<?> createAuthToken(JwtRequest authRequest) {
         try {
@@ -37,9 +35,9 @@ public class AuthService {
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
-    public ResponseEntity<?> createNewUser(RegistrationUserDTO registrationUserDTO){
-        if (userService.findByUsername(registrationUserDTO.getUsername()).isPresent()){
-            return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(),"Пользователь с указанным именем уже существует"), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<?> createNewUser(RegistrationUserDTO registrationUserDTO) {
+        if (userService.findByUsername(registrationUserDTO.getUsername()).isPresent()) {
+            return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(), "Пользователь с указанным именем уже существует"), HttpStatus.BAD_REQUEST);
         }
         User user = userService.createNewUser(registrationUserDTO);
         return ResponseEntity.ok(new UserDTO(user.getId(), user.getUsername(), user.getEmail()));

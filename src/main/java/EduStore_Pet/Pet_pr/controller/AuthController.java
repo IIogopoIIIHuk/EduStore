@@ -4,6 +4,7 @@ import EduStore_Pet.Pet_pr.DTO.JwtRequest;
 import EduStore_Pet.Pet_pr.DTO.RegistrationUserDTO;
 import EduStore_Pet.Pet_pr.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Tag(name = "methods authentication and registration of users")
 @RequiredArgsConstructor
 public class AuthController {
+
     private final AuthService authService;
 
     @Operation(
@@ -36,4 +39,5 @@ public class AuthController {
     public ResponseEntity<?> createNewUser(@RequestBody RegistrationUserDTO registrationUserDTO){
         return authService.createNewUser(registrationUserDTO);
     }
+
 }
