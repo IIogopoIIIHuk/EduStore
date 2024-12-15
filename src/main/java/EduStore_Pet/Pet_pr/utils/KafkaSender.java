@@ -19,4 +19,5 @@ public class KafkaSender {
         kafkaTemplate.send("user-registration", fullMessage);
     }
 
+
 }
